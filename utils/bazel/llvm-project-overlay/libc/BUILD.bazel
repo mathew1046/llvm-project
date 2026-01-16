@@ -2871,6 +2871,14 @@ libc_support_library(
 )
 
 libc_support_library(
+    name = "__support_math_llogbl",
+    hdrs = ["src/__support/math/llogbl.h"],
+    deps = [
+        ":__support_fputil_manipulation_functions",
+    ],
+)
+
+libc_support_library(
     name = "__support_math_exp_constants",
     hdrs = ["src/__support/math/exp_constants.h"],
     deps = [
@@ -4341,7 +4349,12 @@ libc_math_function(name = "llogb")
 
 libc_math_function(name = "llogbf")
 
-libc_math_function(name = "llogbl")
+libc_math_function(
+    name = "llogbl",
+    additional_deps = [
+        ":__support_math_llogbl",
+    ],
+)
 
 libc_math_function(name = "llogbf128")
 
